@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aleksa Milovanović</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+<style>
+/* Body & basic layout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #0a0a1a;
+    color: #e0e0ff;
+    overflow-x: hidden;
+}
+
+a {
+    color: #ff2d95;
+    text-decoration: none;
+    transition: 0.3s;
+}
+a:hover { text-shadow: 0 0 10px #ff2d95; }
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile */
+.profile {
+    text-align: center;
+    margin-top: 3rem;
+    position: relative;
+}
+.profile img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid #ff2d95;
+    box-shadow: 0 0 20px #ff2d95, 0 0 40px #6f5fff;
+}
+.profile h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: #ff2d95;
+    margin: 1rem 0 0.3rem 0;
+    text-shadow: 0 0 10px #ff2d95, 0 0 20px #6f5fff;
+}
+.profile p {
+    font-size: 1rem;
+    color: #e0e0ff;
+}
+
+/* Buttons / Links */
+.profile a {
+    display: inline-block;
+    margin: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #6f5fff;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #6f5fff;
+}
+.profile a:hover {
+    box-shadow: 0 0 20px #ff2d95, 0 0 30px #6f5fff;
+}
+
+/* About section */
+.about, .experience, .repositories {
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #1f0f2f;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #6f5fff33;
+    transition: 0.3s;
+}
+.about h2, .experience h2, .repositories h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #6f5fff;
+    text-shadow: 0 0 8px #6f5fff;
+    margin-bottom: 1rem;
+}
+
+/* Cards inside sections */
+.card {
+    background-color: #0d0a1a;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #ff2d95;
+    transition: 0.3s;
+}
+.card:hover { 
+    box-shadow: 0 0 15px #ff2d95, 0 0 25px #6f5fff; 
+}
+
+/* Repositories grid */
+.repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+/* Cyberpunk particles background */
+#particles {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="layout">
+
+    <div class="profile">
+        <img src="profil.jpg" alt="Aleksa Milovanović">
+        <h1>Aleksa Milovanović</h1>
+        <p>Applied Math. Student @ UNS</p>
+        <a href="CV.pdf" target="_blank">CV</a>
+        <a href="https://github.com/al3gzy" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/alekm1lo/" target="_blank">LinkedIn</a>
+    </div>
+
+    <div class="about">
+        <h2>About Me</h2>
+        <p>Heya there 👋 I am Aleksa, a twenty-two-year-old Applied Mathematics Student at the University of Novi Sad.</p>
+        <p>Interested in applied mathematics and computational physics, focusing on physics-informed machine learning models for simulations.</p>
+    </div>
+
+    <div class="experience">
+        <h2>Experience</h2>
+        <div class="card">
+            <h3>Institute of Physics Belgrade</h3>
+            <p>Research Intern — May 2025 - Present</p>
+        </div>
+        <div class="card">
+            <h3>Petnica Science Center</h3>
+            <p>Teaching Associate — Apr 2025 - Present</p>
+        </div>
+    </div>
+
+    <div class="repositories">
+        <h2>GitHub Projects</h2>
+        <div class="repo-grid" id="repo-container"></div>
+    </div>
+
+</div>
+
+<script>
+// Fetch GitHub repos
+document.addEventListener('DOMContentLoaded', function() {
+    const username = 'al3gzy';
+    const repoContainer = document.getElementById('repo-container');
+
+    fetch(`https://api.github.com/users/${username}/repos`)
+        .then(res => res.json())
+        .then(repos => {
+            repos.sort((a,b) => new Date(b.updated_at)-new Date(a.updated_at));
+            repos.forEach(repo => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                    <p>${repo.description ? repo.description : 'No description available.'}</p>
+                    <p>⭐ ${repo.stargazers_count}</p>
+                `;
+                repoContainer.appendChild(card);
+            });
+        });
+});
+</script>
+
+<script>
+// Neon particles background
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w, h, particles = [];
+function resize() { w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; init(); }
+window.addEventListener('resize', resize);
+function init() {
+    particles=[];
+    for(let i=0;i<120;i++){
+        particles.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: Math.random()*2+1,
+            dx: (Math.random()-0.5)*1.5,
+            dy: (Math.random()-0.5)*1.5,
+            color: ['#ff2d95','#6f5fff','#00ffff'][Math.floor(Math.random()*3)]
+        });
+    }
+}
+function animate() {
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{
+        p.x+=p.dx; p.y+=p.dy;
+        if(p.x<0||p.x>w)p.dx*=-1;
+        if(p.y<0||p.y>h)p.dy*=-1;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=p.color;
+        ctx.fill();
+    });
+    requestAnimationFrame(animate);
+}
+resize();
+animate();
+</script>
+
+</body>
+</html>
