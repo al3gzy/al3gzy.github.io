@@ -161,12 +161,12 @@ section h2 {
 
     .container {
         display: block;
+        width: 100%;
     }
 
     .sidebar {
         position: relative;
         width: 100%;
-        height: auto;
         padding: 1.5rem 1rem;
         flex-direction: column;
         align-items: center;
@@ -187,12 +187,18 @@ section h2 {
 
     .main {
         margin-left: 0;
+        width: 100%;
         max-width: 100%;
         padding: 1rem;
+        box-sizing: border-box;
     }
 
     section {
         width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto 1.5rem auto;
+        overflow-x: hidden;
     }
 
     .projects-scroll {
@@ -201,6 +207,9 @@ section h2 {
         overflow-x: auto;
         gap: 0.8rem;
         padding-bottom: 0.3rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .projects-scroll .card {
