@@ -154,25 +154,61 @@ section h2 {
 }
 
 @media(max-width:800px){
-    .sidebar{
-        position:relative;
-        width:100%;
-        flex-direction:row;
-        justify-content:center;
-        padding:1rem;
-        flex-wrap:wrap;
+
+    body, html {
+        overflow-x: hidden;
     }
-    .sidebar img{
-        width:80px;
-        height:80px;
-        margin-right:1rem;
+
+    .container {
+        display: block;
     }
-    .main{
-        margin-left:0;
-        padding:1rem;
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 1.2rem 0;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: none;
     }
-    .projects-scroll{
-        flex-wrap:nowrap;
+
+    .sidebar img {
+        width: 85px;
+        height: 85px;
+        margin: 0 auto 0.6rem auto;
+    }
+
+    .sidebar h1 {
+        font-size: 1.1rem;
+    }
+
+    .main {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    section {
+        width: 100%;
+    }
+
+    .projects-scroll {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 0.8rem;
+        padding-bottom: 0.3rem;
+    }
+
+    .projects-scroll .card {
+        min-width: 250px;
+        flex: 0 0 auto;
+    }
+
+    .projects-scroll::-webkit-scrollbar {
+        display: none;
     }
 }
 </style>
@@ -187,7 +223,7 @@ section h2 {
         <img src="profil.jpg" alt="Aleksa Milovanović">
         <h1>Aleksa Milovanović</h1>
         <p>MSc Applied Math @ UNS</p>
-        <a href="mailto:alekm1lo@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="mailto:aleksa.milovanovic@dmi.uns.ac.rs"><i class="fas fa-envelope"></i> Email</a>
         <a href="CV.pdf" target="_blank"><i class="fas fa-file-alt"></i> CV</a>
         <a href="https://github.com/al3gzy" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         <a href="https://www.linkedin.com/in/alekm1lo/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
