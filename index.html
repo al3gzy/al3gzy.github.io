@@ -163,15 +163,21 @@ section h2 {
         display: block;
         width: 100%;
     }
-
-    .sidebar {
+    
+   .sidebar {
         position: relative;
         width: 100%;
+        max-width: 400px;
         padding: 1.5rem 1rem;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        margin: 0 auto;
         box-shadow: none;
+    }
+
+    .sidebar a {
+        width: auto;
     }
 
     .sidebar img {
@@ -304,38 +310,39 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
-let w,h,particles=[];
-function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;init();}
-window.addEventListener('resize',resize);
-function init(){
-    particles=[];
-    for(let i=0;i<80;i++){
-        particles.push({
-            x:Math.random()*w,
-            y:Math.random()*h,
-            r:Math.random()*2+1,
-            dx:(Math.random()-0.5)*1.2,
-            dy:(Math.random()-0.5)*1.2,
-            color:['#ff2d95','#6f5fff','#ff00ff'][Math.floor(Math.random()*3)]
-        });
-    }
-}
-function animate(){
-    ctx.clearRect(0,0,w,h);
-    particles.forEach(p=>{
-        p.x+=p.dx;p.y+=p.dy;
-        if(p.x<0||p.x>w)p.dx*=-1;
-        if(p.y<0||p.y>h)p.dy*=-1;
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+let particles = Array.from({length: 80}, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 4 + 2,
+    dx: (Math.random() - 0.5) * 1.2,
+    dy: (Math.random() - 0.5) * 1.2,
+    color: ['#ffffff','#ff2d95','#6f5fff','#ff00ff'][Math.floor(Math.random()*4)]
+}));
+
+function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
+        if(p.x < 0 || p.x > w) p.dx *= -1;
+        if(p.y < 0 || p.y > h) p.dy *= -1;
         ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle=p.color;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
         ctx.fill();
     });
     requestAnimationFrame(animate);
 }
-resize();
+
+window.addEventListener('resize', () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+});
+
 animate();
 </script>
-
 </body>
 </html>
