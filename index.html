@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aleksa Milovanović</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 <style>
@@ -13,7 +13,7 @@ body, html {
     margin:0;
     padding:0;
     height:100%;
-    font-family:'Roboto Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
     background-color:#0a0a1a;
     color:#88acac;
     overflow-x:hidden;
@@ -44,16 +44,16 @@ body, html {
     height:120px;
     border-radius:50%;
     border:4px solid #88acac;
-    /* box-shadow:0 0 20px #88acac, 0 0 40px #1f2a4d; */
+    object-fit: cover; 
 }
 
 .sidebar h1 {
-    font-family:'Orbitron', sans-serif;
+    font-family: 'Audiowide', monospace;
     font-size:1.4rem;
     color:#88acac;
     margin:1rem 0 0.5rem 0;
     text-align:center;
-    text-shadow:0 0 10px #1f2a4d, 0 0 20px #1f2a4d;
+    text-shadow: none;
 }
 
 .sidebar p {
@@ -111,7 +111,7 @@ section {
 }
 
 section h2 {
-    font-family:'Orbitron', sans-serif;
+    font-family:'Audiowide', sans-serif;
     color:#88acac;
     text-shadow:0 0 8px #1f2a4d;
     margin-bottom:1rem;
@@ -207,7 +207,7 @@ section h2 {
 
 .projects-scroll .card h3 a:hover {
     text-decoration: underline;
-    color: #88acac; /* optional hover color */
+    color: #88acac;
 }
 </style>
 </head>
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
         .then(res => res.json())
         .then(repos => {
-            repoContainer.innerHTML = ''; // remove loading text
+            repoContainer.innerHTML = ''; 
             repos.sort((a,b) => new Date(b.updated_at)-new Date(a.updated_at));
             repos.forEach(repo => {
                 const card = document.createElement('div');
