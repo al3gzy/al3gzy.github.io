@@ -15,7 +15,7 @@ body, html {
     height:100%;
     font-family:'Roboto Mono', monospace;
     background-color:#0a0a1a;
-    color:#e0e0ff;
+    color:#88acac;
     overflow-x:hidden;
 }
 
@@ -30,11 +30,12 @@ body, html {
     width:220px;
     height:100vh;
     padding:2rem 1rem;
-    background-color:#1f0f2f;
+    background-color:#0f101a;
     display:flex;
     flex-direction:column;
     align-items:center;
-    box-shadow:0 0 20px #6f5fff33;
+    box-shadow:0 0 20px #1f2a4d;
+    border: 1px solid #88acac;
     z-index:10;
 }
 
@@ -42,17 +43,17 @@ body, html {
     width:120px;
     height:120px;
     border-radius:50%;
-    border:4px solid #ff2d95;
-    box-shadow:0 0 20px #ff2d95, 0 0 40px #6f5fff;
+    border:4px solid #88acac;
+    /* box-shadow:0 0 20px #88acac, 0 0 40px #1f2a4d; */
 }
 
 .sidebar h1 {
     font-family:'Orbitron', sans-serif;
     font-size:1.4rem;
-    color:#ff2d95;
+    color:#88acac;
     margin:1rem 0 0.5rem 0;
     text-align:center;
-    text-shadow:0 0 10px #ff2d95, 0 0 20px #6f5fff;
+    text-shadow:0 0 10px #1f2a4d, 0 0 20px #1f2a4d;
 }
 
 .sidebar p {
@@ -68,17 +69,17 @@ body, html {
     gap:0.5rem;
     margin:0.4rem 0;
     padding:0.4rem 0.8rem;
-    border:1px solid #6f5fff;
+    border:1px solid #1f2a4d;
     border-radius:6px;
     text-align:center;
-    box-shadow:0 0 10px #6f5fff;
-    color:#e0e0ff;
+    box-shadow:0 0 10px #1f2a4d;
+    color:#88acac;
     text-decoration:none;
     transition:0.3s;
 }
 
 .sidebar a:hover {
-    box-shadow:0 0 20px #ff2d95,0 0 30px #6f5fff;
+    box-shadow:0 0 20px #88acac,0 0 30px #1f2a4d;
 }
 
 .sidebar a i {
@@ -86,8 +87,8 @@ body, html {
 }
 
 .sidebar a:hover i {
-    color:#ff2d95;
-    text-shadow:0 0 5px #ff2d95,0 0 10px #6f5fff;
+    color:#88acac;
+    text-shadow:0 0 5px #88acac,0 0 10px #1f2a4d;
 }
 
 .main {
@@ -102,16 +103,17 @@ body, html {
 }
 
 section {
-    background-color:#1f0f2f;
+    background-color:#1f2a4d;
     border-radius:12px;
     padding:1.5rem;
-    box-shadow:0 0 20px #6f5fff33, 0 0 40px #ff2d9555;
+    box-shadow:0 0 20px #88acac33, 0 0 40px #1f2a4d55;
+    border: 1px solid #88acac;
 }
 
 section h2 {
     font-family:'Orbitron', sans-serif;
-    color:#6f5fff;
-    text-shadow:0 0 8px #6f5fff;
+    color:#88acac;
+    text-shadow:0 0 8px #1f2a4d;
     margin-bottom:1rem;
 }
 
@@ -120,14 +122,14 @@ section h2 {
     margin:1rem 0;
     padding:1rem;
     border-radius:8px;
-    border-left:3px solid #ff2d95;
+    border-left:3px solid #88acac;
     transition:0.3s;
     max-width:100%;
     overflow-wrap:break-word;
 }
 
 .card:hover {
-    box-shadow:0 0 20px #ff2d95,0 0 40px #6f5fff;
+    box-shadow:0 0 20px #88acac,0 0 40px #1f2a4d;
     transform: translateY(-5px);
 }
 
@@ -154,84 +156,62 @@ section h2 {
 }
 
 @media(max-width:800px){
-
-    body, html {
-        overflow-x: hidden;
+    .container .main {
+        display: none;
     }
 
-    .container {
-        display: block;
-        width: 100%;
-    }
-    
-   .sidebar {
+    .sidebar {
         position: relative;
         width: 100%;
-        max-width: 400px;
-        padding: 1.5rem 1rem;
+        max-width: 100%;
+        padding: 2rem 1rem;
         flex-direction: column;
         align-items: center;
         text-align: center;
         margin: 0 auto;
         box-shadow: none;
-    }
-
-    .sidebar a {
-        width: auto;
+        z-index: 1;
     }
 
     .sidebar img {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 0.8rem;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
     }
 
     .sidebar h1 {
-        font-size: 1.2rem;
-        margin-bottom: 0.4rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
     }
 
-    .main {
-        margin-left: 0;
-        width: 100%;
-        max-width: 100%;
-        padding: 1rem;
-        box-sizing: border-box;
+    .sidebar p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
     }
 
-    section {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        margin: 0 auto 1.5rem auto;
-        overflow-x: hidden;
-    }
-
-    .projects-scroll {
+    .sidebar a {
+        width: 90%;
+        max-width: 300px;
+        margin: 0.5rem 0;
+        padding: 0.6rem 0;
         display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 0.8rem;
-        padding-bottom: 0.3rem;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
+        justify-content: center;
+        gap: 0.5rem;
     }
+}
 
-    .projects-scroll .card {
-        min-width: 250px;
-        flex: 0 0 auto;
-    }
+.projects-scroll .card h3 a {
+    color: #61AFEF;
+    text-decoration: none;
+}
 
-    .projects-scroll::-webkit-scrollbar {
-        display: none;
-    }
+.projects-scroll .card h3 a:hover {
+    text-decoration: underline;
+    color: #88acac; /* optional hover color */
 }
 </style>
 </head>
 <body>
-
-<canvas id="particles"></canvas>
 
 <div class="container">
 
@@ -256,12 +236,12 @@ section h2 {
             <h2>Experience</h2>
             <div class="card">
                 <h3>Institute of Physics Belgrade</h3>
-                <p>Research Intern • May 2025 - Present</p>
+                <p>Research Intern • Internship • May 2025 - Present</p>
                 <p>Objective collapse models with stochastic evolution corrections.</p>
             </div>
             <div class="card">
                 <h3>Petnica Science Center</h3>
-                <p>Teaching Associate • Apr 2025 - Present</p>
+                <p>Teaching Associate • Seasonal • Apr 2025 - Present</p>
                 <p>Topics: functions, calculus, vector spaces, sequences, pre-Hilbert spaces.</p>
             </div>
         </section>
@@ -307,42 +287,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
-
-let particles = Array.from({length: 80}, () => ({
-    x: Math.random() * w,
-    y: Math.random() * h,
-    r: Math.random() * 4 + 2,
-    dx: (Math.random() - 0.5) * 1.2,
-    dy: (Math.random() - 0.5) * 1.2,
-    color: ['#ffffff','#ff2d95','#6f5fff','#ff00ff'][Math.floor(Math.random()*4)]
-}));
-
-function animate() {
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => {
-        p.x += p.dx;
-        p.y += p.dy;
-        if(p.x < 0 || p.x > w) p.dx *= -1;
-        if(p.y < 0 || p.y > h) p.dy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-    });
-    requestAnimationFrame(animate);
-}
-
-window.addEventListener('resize', () => {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-});
-
-animate();
-</script>
 </body>
 </html>
